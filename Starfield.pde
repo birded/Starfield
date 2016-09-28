@@ -4,13 +4,16 @@ void setup()
 {
 	noStroke();
 	size(500,500);
-	particles = new Particle[200];
+	particles = new Particle[300];
 	for(int i = 0; i < particles.length; i++){
-		particles[i] = new NormalParticle();
+		particles[i] = new NormalParticle(250,250);
 	}
 
+
 	particles[0] = new OddballParticle();
-	particles[1] = new JumboParticle();
+	particles[1] = new OddballParticle();
+	particles[2] = new OddballParticle();
+	particles[3] = new JumboParticle();
 }
 void draw()
 {
@@ -22,13 +25,16 @@ void draw()
 }
 
 void mousePressed(){
+
 	particles = new Particle[200];
 	for(int i = 0; i < particles.length; i++){
 		particles[i] = new NormalParticle(mouseX,mouseY);
 	}
 
 	particles[0] = new OddballParticle();
-	particles[1] = new JumboParticle();
+	particles[1] = new OddballParticle();
+	particles[2] = new OddballParticle();
+	particles[3] = new JumboParticle();
 }
 
 interface Particle
@@ -47,26 +53,27 @@ class NormalParticle implements Particle
 		y = 250;
 		speed = Math.random() * 5;
 		angle = Math.random() * 2 * PI;
-		aColor = color( (int)(Math.random() * 255) , (int)(Math.random() * 255) , (int)(Math.random() * 255) );
+		aColor = color( (int)(Math.random() * 200) + 55  , (int)(Math.random() * 200) + 55 , (int)(Math.random() * 200) + 55 );
 	}
 
-	NormalParticle(int x, int y){
-		x = x;
-		y = y;
-		speed = Math.random() * 5;
+	NormalParticle(int xPos, int yPos){
+		x = xPos;
+		y = yPos;
+		speed = Math.random() * 8;
 		angle = Math.random() * 2 * PI;
-		aColor = color( (int)(Math.random() * 255) , (int)(Math.random() * 255) , (int)(Math.random() * 255) );
+		aColor = color( (int)(Math.random() * 200) + 55  , (int)(Math.random() * 200) + 55 , (int)(Math.random() * 200) + 55 );
 	}
 
 	public void move(){
 		x = Math.cos(angle) * speed + x;
 		y = Math.sin(angle) * speed + y;
+		angle = angle + PI/144;
 
 	}
 
 	public void show(){
 		fill(aColor);
-		ellipse((float)x, (float)y, 5, 5);
+		ellipse((float)x, (float)y, 8, 8);
 	}
 }
 class OddballParticle implements Particle
@@ -83,20 +90,20 @@ class OddballParticle implements Particle
 	}
 
 	public void move(){
-		myX = Math.cos(angle) * speed + myX;
-		myY = Math.sin(angle) * speed + myY;
-		angle = angle + PI/24;
+		myX = Math.sin(angle) * speed + myX;
+		myY = Math.cos(angle) * speed + myY;
+		angle = angle + PI/36;
 	}
 
 	public void show(){
 		fill(aColor);
-		triangle( (float) myX - 10, (float) myY + 10, (float)myX, (float)myY - 10,(float) myX +10,(float) myY + 10);
+		ellipse( (float)myX, (float)myY, 13, 13);
 	}
-	//your code here
 }
+
 class JumboParticle extends NormalParticle
 {
-	void show(){
+	public void show(){
 		fill(aColor);
 		ellipse((float)x, (float)y, 45, 45);
 
