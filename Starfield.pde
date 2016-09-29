@@ -3,6 +3,7 @@ int xPos, yPos;
 
 void setup()
 {
+	background(0);
 	noStroke();
 	size(500,500);
 	xPos = 250;
@@ -19,7 +20,8 @@ void setup()
 }
 void draw()
 {
-	background(10);
+	fill(0,0,0,70);
+	rect(0,0,width,height);
 	for(int i = 0; i < particles.length; i++){
 		particles[i].move();
 		particles[i].show();
