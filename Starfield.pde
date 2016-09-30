@@ -20,7 +20,7 @@ void setup()
 }
 void draw()
 {
-	fill(0,0,0,70);
+	fill(0,0,0,40);
 	rect(0,0,width,height);
 	for(int i = 0; i < particles.length; i++){
 		particles[i].move();
