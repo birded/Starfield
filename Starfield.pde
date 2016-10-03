@@ -26,10 +26,11 @@ void draw()
 		particles[i].move();
 		particles[i].show();
 	}
-	fill(0);
-	ellipse(xPos,yPos,50,50);
-	fill(0, 0, 0, 80);
-	ellipse(xPos,yPos,80,80);
+
+  fill(0,0,0,60); //center black hole
+  for(int i = 15 ; i < 90 ; i += 5){
+  	ellipse(xPos,yPos,i,i);
+  }
 }
 
 void mousePressed(){
