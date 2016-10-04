@@ -77,7 +77,7 @@ class NormalParticle implements Particle
 	public void move(){
 		x = Math.cos(angle) * speed + x;
 		y = Math.sin(angle) * speed + y;
-			angle = angle + PI/144;
+		angle = angle + PI/144;
 		
 
 	}
@@ -112,6 +112,7 @@ class OddballParticle implements Particle
 		myX = Math.sin(angle) * speed + myX;
 		myY = Math.cos(angle) * speed + myY;
 		angle = angle + PI/60;
+		speed = Math.tan(angle) * angle;
 	}
 
 	public void show(){
